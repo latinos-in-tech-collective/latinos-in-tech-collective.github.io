@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-org.github.io/latinos-in-tech/sitemap.xml
+Sitemap: https://latinos-in-tech-collective.github.io/sitemap.xml

@@ -1,123 +1,80 @@
-# Latinos in Tech — website
+# Latinos in Tech Collective website
 
-A static, no-build-step website for a Latinos in Tech community, built around the
-existing "L·T" mark. Plain HTML/CSS/JS — no framework, no bundler, no `npm install`
-required to run it.
+Static site for Latinos in Tech Collective (LiTC). Plain HTML, CSS, and a little JavaScript. No build step, no framework, nothing to install. It deploys as is on GitHub Pages.
 
-## Preview it locally
+## Pages
 
-There's no build step, so you can just open `index.html` in a browser. For a more
-accurate preview (some things behave slightly differently over `file://` vs a real
-server), run a tiny local server from this folder instead:
+```
+index.html                      Home
+about.html                      What LiTC is, phases, and the community charter
+network.html                    For groups: what groups get, how joining works, FAQ
+events.html                     Sessions: upcoming and past
+partners.html                   For companies, universities, funders, investors
+notes.html                      List of notes (updates and ideas)
+note-network-of-networks.html   First note
+team.html                       Team and open volunteer roles
+join.html                       Three forms: groups, updates, partners
+404.html                        Not found page (uses root paths on purpose)
+
+mentorship.html, sponsors.html, blog.html, blog-post.html
+                                Redirects from the old site so existing links still work
+
+css/styles.css                  The whole design system, one file
+js/main.js                      Mobile menu and form handling
+assets/                         Logo (mark.svg, glyph.svg), icons, share image
+```
+
+Every page repeats its own header and footer. If you change the nav or footer, change it on every page. A quick way is find and replace across all `.html` files in your editor.
+
+## Preview locally
+
+Open `index.html` in a browser, or run a small server from this folder for a closer match to the live site:
 
 ```bash
 python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-## Deploy to GitHub Pages
+## Deploy
 
-1. Create a new GitHub repo and push this folder's contents to it (this file, all
-   the `.html` files, `css/`, `js/`, and `assets/` should sit at the **root** of the
-   repo, or in `/docs` if you prefer — just match what you pick in step 3).
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial site"
-   git branch -M main
-   git remote add origin https://github.com/YOUR-ORG/YOUR-REPO.git
-   git push -u origin main
-   ```
-2. On GitHub, go to **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to "Deploy from a branch", pick
-   the `main` branch and the `/ (root)` folder (or `/docs`, if that's where you put
-   the files), then save.
-4. GitHub gives you a URL like `https://YOUR-ORG.github.io/YOUR-REPO/`. It can take
-   a minute or two to go live the first time.
-5. Using a custom domain instead? Add a `CNAME` file at the root with just your
-   domain in it, and point your DNS at GitHub Pages per
-   [their docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
+This repo is named `latinos-in-tech-collective.github.io`, so GitHub Pages serves it at https://latinos-in-tech-collective.github.io/
 
-## What's placeholder and needs real content before launch
+1. Commit and push to `main`.
+2. In GitHub, go to Settings, then Pages. Set the source to "Deploy from a branch", branch `main`, folder `/ (root)`.
+3. Changes go live a minute or two after each push.
 
-- **Every URL that's `href="#"`** — mainly the Slack/Instagram/LinkedIn links in
-  the footer, and a few "Read" links on the Stories page. Swap in real links.
-- **Sponsor names** (Nimbus, Fieldstone, Anchor Labs, Portside, Greywolf, Solano &
-  Rook) are invented — replace with real sponsors, or remove the section.
-- **All copy** — team bios, event listings, stats (4,800+ members, 22 chapters,
-  etc.), the mentorship quote, and the blog post are sample text to show the
-  layout working with realistic content. None of it is real, **except** the
-  "Our goals" and "As members, we will / We will not embody" sections on the
-  About page — that text comes straight from `community-charter.pptx`.
-- **Forms don't submit anywhere.** Both the homepage email signup and the Join
-  page form just show a confirmation message on submit (see `data-demo-form` in
-  `js/main.js`) — there's no backend. Wire them up to something like
-  [Formspree](https://formspree.io), a Google Form, Mailchimp, or your own API
-  before launch.
-- **`sponsors@`/`partners@latinosintech.example`, the sitemap URLs, and
-  `robots.txt`** all use a placeholder domain (`your-org.github.io/latinos-in-tech`)
-  — update them to your real domain once you have one.
-- **Only one blog post exists** (`blog-post.html`, "From bootcamp to tech lead").
-  The rest of the Stories list links to `#` — duplicate `blog-post.html` for each
-  new story and update the "Read" links on `blog.html` to point to the new files.
+If you add a custom domain later, add a `CNAME` file with the domain, and update the URLs in `sitemap.xml`, `robots.txt`, and the `og:` tags in each page head.
 
-## Structure
+## Before launch
 
-```
-index.html          Home
-about.html           About / origin story / timeline / values
-team.html            Leadership list
-events.html          Upcoming + past events
-mentorship.html       How the program works, tracks, FAQ
-blog.html            Story listing (featured + list)
-blog-post.html       Example single story page
-sponsors.html        Tiers + current sponsors
-join.html            Membership form + FAQ
-404.html             Custom not-found page
-css/styles.css       The whole design system — one file, no preprocessor
-js/main.js           Mobile nav toggle, hero entrance animation, demo form handling
-assets/              Logo (mark.svg, glyph.svg), favicons, social preview image
-robots.txt, sitemap.xml
-```
+**Forms.** The three forms on `join.html` are not connected yet. Until they are, submitting shows "This form is not connected yet" so nothing gets lost quietly. Two options:
 
-Every page repeats its own `<header>`/`<footer>` markup rather than pulling from a
-shared partial, since there's no build step to assemble includes. If you outgrow
-that (adding a 10th page and dreading the copy-paste), consider adding a static
-site generator (Eleventy, Astro, etc.) — but the current setup is deliberately
-dependency-free so it's easy to hand off or fork.
+- *Keep the forms on the site.* Create a free form endpoint (Formspree works well), then paste the endpoint URL into each form's `action=""`. Responses land in email and can be exported to Excel.
+- *Use Microsoft Forms instead.* Build the three forms in Microsoft Forms, then replace each `<form>` block on `join.html` with a button linking to the form. Responses go straight into Excel.
 
-## Design system, briefly
+The fields in each form are chosen to feed the Phase 1 metrics (groups by type and size, people by role, partner interest). Keep them consistent if you switch tools.
 
-- **Colors**: true black background (`--black`, matching the mark), white text,
-  one warm amber accent (`--amber`) for CTAs and links, plus warm grays for
-  secondary text and hairline dividers. All defined as CSS variables at the top
-  of `css/styles.css` — change the palette there.
-- **Type**: [Fraunces](https://fonts.google.com/specimen/Fraunces) for headlines
-  and pull-quotes, [Archivo](https://fonts.google.com/specimen/Archivo) for body
-  and UI text. Both loaded from Google Fonts in each page's `<head>`.
-- **Structural idea**: the mark itself is built on a baseline — the L rises off
-  it, the T drops below it. That repeats site-wide as thin hairline dividers
-  between list rows and sections, instead of shadowed cards.
-- **Icon tiles**: solid squares with a flat white-on-square glyph, borrowed
-  from the community charter deck (`community-charter.pptx`) — the deck keeps
-  these monochrome (black tile), the site recolors them amber to match the
-  warmer palette. Used on About, Join, and Sponsors. New icons follow the same
-  pattern: 24×24 viewBox, solid fill, no strokes thicker than needed for
-  small shapes like the checkmark/x.
-- **Tracked, uppercase labels** (eyebrows, tags, roles, event meta) also come
-  from the deck's small functional labels (`OUR CHARTER`, `01 – 04`). Applied
-  sitewide via `.eyebrow`, `.tag`, `.role`.
-- **About page content**: the "Our goals" and "As members, we will / We will
-  not embody" sections are pulled directly from the real charter deck, not
-  invented filler like the rest of the site. If the charter changes, update
-  those three sections in `about.html` to match.
-- **No JS framework.** `js/main.js` handles the mobile nav toggle, one entrance
-  animation on the homepage hero, and the demo-form confirmation states. That's
-  it — everything else is CSS.
+**Placeholders to replace** (search the code for `<!--` to find each one):
 
-## Logo
+- Footer Email, LinkedIn, Instagram links (`href="#"`)
+- Partner names for From Earning to Owning, once brand approvals are confirmed
+- Year, photo, or headcount for the Boston Tech Week mixer
+- Groups in the network, on `network.html`, once groups confirm
+- Current partners, on `partners.html`, once partners confirm
+- Team names, photos, and bios, on `team.html` (a commented template is there)
+- "What we ask" on `network.html` and "Our promise to members" on `partners.html` are drafts. Confirm them before launch.
 
-`assets/mark.svg` is the full badge (black square + white mark) — used for
-favicons. `assets/glyph.svg` is just the white shape on a transparent background
-with `fill="currentColor"`, meant for inline use (nav, footer) so it can inherit
-whatever color it's placed in.
+**Content rule.** Only real names, numbers, and logos. The old site's sample stats, sponsors, team, and stories were removed for that reason.
+
+## Content that comes from source documents
+
+- The goals, "As members, we will", and "We will not embody" lists on `about.html` come from the community charter deck. Update them there if the charter changes.
+- The $30B figure and related numbers come from ¡Vamos Massachusetts! (Massachusetts Taxpayers Foundation with We Are ALX and the Mauricio Gastón Institute, 2025). The source line is on the page wherever the numbers appear.
+
+## Design system
+
+- **Colors.** Warm light grey (`--bg`) and charcoal (`--ink`), taken from the LiTC flyer. No accent color. All in CSS variables at the top of `css/styles.css`.
+- **Type.** Inter Tight from Google Fonts, used heavy with tight letter spacing for headlines, regular for body.
+- **Logo.** The L.T glyph sits in a charcoal rounded tile, as on the flyer. On the homepage the blocks assemble on load (skipped for people who turn off motion).
+- **Structure.** Thick charcoal rules between sections, thin grey rules between rows. Numbers only where the content is a real sequence (phases, joining steps).
+- **Adding a note.** Copy `note-network-of-networks.html`, change the title and text, then add a row to the top of the list in `notes.html`.
