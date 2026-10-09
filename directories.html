@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Team | Latinos in Tech Collective</title>
-  <meta name="description" content="The volunteers building Latinos in Tech Collective, and the roles we need help with.">
+  <title>Directories | Latinos in Tech Collective</title>
+  <meta name="description" content="Search Latino groups across Boston and the events, resources, and funding they share with the Latinos in Tech Collective network.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Team | Latinos in Tech Collective">
-  <meta property="og:description" content="The volunteers building Latinos in Tech Collective, and the roles we need help with.">
+  <meta property="og:title" content="Directories | Latinos in Tech Collective">
+  <meta property="og:description" content="Search Latino groups across Boston and the events, resources, and funding they share with the Latinos in Tech Collective network.">
   <meta property="og:image" content="https://latinos-in-tech-collective.github.io/assets/og-image.png">
-  <meta property="og:url" content="https://latinos-in-tech-collective.github.io/team.html">
+  <meta property="og:url" content="https://latinos-in-tech-collective.github.io/directories.html">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Team | Latinos in Tech Collective">
-  <meta name="twitter:description" content="The volunteers building Latinos in Tech Collective, and the roles we need help with.">
+  <meta name="twitter:title" content="Directories | Latinos in Tech Collective">
+  <meta name="twitter:description" content="Search Latino groups across Boston and the events, resources, and funding they share with the Latinos in Tech Collective network.">
   <meta name="twitter:image" content="https://latinos-in-tech-collective.github.io/assets/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +36,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="about.html">About</a></li>
         <li><a href="network.html">For groups</a></li>
-        <li><a href="directories.html">Directories</a></li>
+        <li><a href="directories.html" aria-current="page">Directories</a></li>
         <li><a href="events.html">Sessions</a></li>
         <li><a href="partners.html">Partners</a></li>
         <li><a href="notes.html">Notes</a></li>
@@ -48,37 +48,57 @@
   <main id="main">
     <div class="page-head">
       <div class="wrap">
-        <h1>Who's building this.</h1>
-        <p class="intro">LiTC is run by volunteers who lead and belong to Latino groups across Boston. Introductions coming soon.</p>
+        <h1>Find your people.</h1>
+        <p class="intro">Search Latino groups across Boston, and the events, resources, and funding they share with the whole network.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="join.html#share">Share an event or resource</a>
+          <a class="btn btn-line" href="join.html#group">Add your group</a>
+        </div>
       </div>
     </div>
 
-    <!-- TEAM: when you have real names, photos, and short bios, add a section here.
-    <section aria-labelledby="people-h">
+    <section id="directory" aria-labelledby="dir-h">
       <div class="wrap">
-        <h2 id="people-h">The team</h2>
-        <div class="cols three">
-          <div class="col">
-            <img src="assets/team/firstname.jpg" alt="Full name" style="border-radius:16px;margin-bottom:16px">
-            <h3>Full name</h3>
-            <p>Role in LiTC. One line about the group they come from or what they do.</p>
+        <div class="dir-head">
+          <h2 id="dir-h">The network</h2>
+          <div class="dir-tabs" role="tablist" aria-label="What to search">
+            <button type="button" role="tab" id="tab-groups" data-tab="groups" aria-selected="true" aria-controls="dir-list">Groups</button>
+            <button type="button" role="tab" id="tab-feed" data-tab="feed" aria-selected="false" aria-controls="dir-list">Events and resources</button>
+          </div>
+        </div>
+        <div class="dir-controls">
+          <label class="dir-search" for="dir-q">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.6-4.6"/></svg>
+            <span class="visually-hidden">Search the directory</span>
+            <input id="dir-q" type="search" autocomplete="off" placeholder="Search by name, interest, or topic, like engineering or funding">
+          </label>
+          <div class="chips" id="dir-chips"></div>
+          <p class="dir-count" id="dir-count" aria-live="polite"></p>
+        </div>
+        <div id="dir-list" class="dir-list" role="tabpanel" aria-labelledby="tab-groups">
+          <noscript><p class="dir-empty">Turn on JavaScript to search the directory.</p></noscript>
+        </div>
+        <!-- DIRECTORY: groups, events, and resources live in js/directory-data.js. Only confirmed groups go there. -->
+        <div class="empty">
+          <h3>More groups coming soon.</h3>
+          <p>We list groups only after they say yes. Lead a Latino ERG, association, student group, or community? Add yours, and share what your group is doing with every other group in the network.</p>
+          <div class="actions">
+            <a class="btn btn-solid" href="join.html#group">Add your group</a>
+            <a class="btn btn-line" href="join.html#share">Share an event or resource</a>
           </div>
         </div>
       </div>
     </section>
-    -->
 
-    <section aria-labelledby="roles-h">
+    <section aria-labelledby="how-h">
       <div class="wrap">
-        <h2 id="roles-h">Help run this</h2>
-        <p class="intro">We're looking for volunteers to help build the network.</p>
-        <div class="cols">
-          <div class="col"><h3>Partnerships</h3><p>Bring in groups, companies, and funders, and keep those relationships strong.</p></div>
-          <div class="col"><h3>Events</h3><p>Plan sessions and joint events with groups across the network.</p></div>
-          <div class="col"><h3>Mapping and data</h3><p>Build the map of Latino groups and track how the network grows.</p></div>
-          <div class="col"><h3>Storytelling</h3><p>Write, film, and design the stories that show what the network is doing.</p></div>
-        </div>
-        <div class="actions" style="margin-top:40px"><a class="btn btn-solid" href="join.html#updates">Volunteer with us</a></div>
+        <h2 id="how-h">How it works</h2>
+        <ol class="steps four">
+          <li><span class="n">1</span><h3>Groups share</h3><p>Send us your events, resources, and opportunities through one short form.</p></li>
+          <li><span class="n">2</span><h3>We review weekly</h3><p>We check every submission so the directory stays current and useful.</p></li>
+          <li><span class="n">3</span><h3>It goes live</h3><p>Approved items appear here for members of every group to find.</p></li>
+          <li><span class="n">4</span><h3>Everyone reaches further</h3><p>One group's event reaches the whole network, not just its own list.</p></li>
+        </ol>
       </div>
     </section>
   </main>
@@ -123,5 +143,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/directory-data.js"></script>
+  <script src="js/directory.js"></script>
 </body>
 </html>
