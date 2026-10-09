@@ -8,12 +8,13 @@ Static site for Latinos in Tech Collective (LiTC). Plain HTML, CSS, and a little
 index.html                      Home
 about.html                      What LiTC is, phases, and the community charter
 network.html                    For groups: what groups get, how joining works, FAQ
+directories.html                Search groups, events, resources, and funding in the network
 events.html                     Sessions: upcoming and past
 partners.html                   For companies, universities, funders, investors
 notes.html                      List of notes (updates and ideas)
 note-network-of-networks.html   First note
 team.html                       Team and open volunteer roles
-join.html                       Three forms: groups, updates, partners
+join.html                       Four forms: groups, share an event or resource, updates, partners
 404.html                        Not found page (uses root paths on purpose)
 
 mentorship.html, sponsors.html, blog.html, blog-post.html
@@ -21,6 +22,8 @@ mentorship.html, sponsors.html, blog.html, blog-post.html
 
 css/styles.css                  The whole design system, one file
 js/main.js                      Mobile menu and form handling
+js/directory-data.js            The groups and the events and resources on the Directories page (edit this weekly)
+js/directory.js                 Search and filters for the Directories page
 assets/                         Logo (mark.svg, glyph.svg), icons, share image
 ```
 
@@ -47,12 +50,14 @@ If you add a custom domain later, add a `CNAME` file with the domain, and update
 
 ## Before launch
 
-**Forms.** The three forms on `join.html` are not connected yet. Until they are, submitting shows "This form is not connected yet" so nothing gets lost quietly. Two options:
+**Forms.** The four forms on `join.html` are not connected yet. Until they are, submitting shows "This form is not connected yet" so nothing gets lost quietly. Two options:
 
 - *Keep the forms on the site.* Create a free form endpoint (Formspree works well), then paste the endpoint URL into each form's `action=""`. Responses land in email and can be exported to Excel.
 - *Use Microsoft Forms instead.* Build the three forms in Microsoft Forms, then replace each `<form>` block on `join.html` with a button linking to the form. Responses go straight into Excel.
 
 The fields in each form are chosen to feed the Phase 1 metrics (groups by type and size, people by role, partner interest). Keep them consistent if you switch tools.
+
+**Directories page.** Everything listed lives in `js/directory-data.js`. Edit it in GitHub with the pencil icon, copy an existing entry, change the values, and commit. Weekly routine: review the "Share an event or resource" and "Bring your group in" submissions, add the approved ones to that file, and remove nothing (past events move to the Past filter on their own). Only add a group after it has said yes to being listed. Someone needs to own this, about 15 minutes a week.
 
 **Placeholders to replace** (search the code for `<!--` to find each one):
 

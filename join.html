@@ -36,6 +36,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="about.html">About</a></li>
         <li><a href="network.html">For groups</a></li>
+        <li><a href="directories.html">Directories</a></li>
         <li><a href="events.html">Sessions</a></li>
         <li><a href="partners.html">Partners</a></li>
         <li><a href="notes.html">Notes</a></li>
@@ -51,6 +52,7 @@
         <p class="intro">Pick the form that fits. Each one takes about two minutes.</p>
         <div class="actions">
           <a class="btn btn-line" href="#group">Bring your group in</a>
+          <a class="btn btn-line" href="#share">Share an event or resource</a>
           <a class="btn btn-line" href="#updates">Get updates</a>
           <a class="btn btn-line" href="#partner">Partner with us</a>
         </div>
@@ -86,6 +88,28 @@
             <div class="field"><label for="g-email">Email</label><input id="g-email" name="email" type="email" autocomplete="email" required></div>
             <div class="field full"><label for="g-need">What would make the network most useful for your group? <span class="hint">Optional</span></label><textarea id="g-need" name="needs"></textarea></div>
             <div class="form-row"><button class="btn btn-solid" type="submit">Send</button><p class="form-note">We'll only use this to follow up with you.</p></div>
+          </form>
+          <div class="form-msg" data-form-msg hidden tabindex="-1" role="status"><h3></h3><p></p></div>
+        </div>
+
+        <div class="form-block" id="share">
+          <h2>Share an event or resource</h2>
+          <p class="intro">For groups in the network, or groups that want to be. We review submissions weekly and add them to the <a class="text-link" href="directories.html#events">Directories</a> page.</p>
+          <form class="form-grid" data-form action="" method="POST" data-thanks="We'll review it this week and let you know when it's live.">
+            <input type="hidden" name="form" value="share">
+            <div class="field"><label for="s-title">Title</label><input id="s-title" name="title" required></div>
+            <div class="field"><label for="s-group">Your group</label><input id="s-group" name="group" required></div>
+            <div class="field"><label for="s-kind">What is it?</label>
+              <select id="s-kind" name="kind" required>
+                <option value="">Choose one</option>
+                <option>Event</option><option>Resource</option><option>Funding or opportunity</option>
+              </select></div>
+            <div class="field"><label for="s-date">Date <span class="hint">If it has one</span></label><input id="s-date" name="date" type="date"></div>
+            <div class="field full"><label for="s-link">Link for details or registration</label><input id="s-link" name="link" type="url" placeholder="https://"></div>
+            <div class="field full"><label for="s-desc">Short description</label><textarea id="s-desc" name="description" required></textarea></div>
+            <div class="field"><label for="s-name">Your name</label><input id="s-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="s-email">Email</label><input id="s-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="form-row"><button class="btn btn-solid" type="submit">Submit for review</button><p class="form-note">We'll only use your contact info to follow up about this item.</p></div>
           </form>
           <div class="form-msg" data-form-msg hidden tabindex="-1" role="status"><h3></h3><p></p></div>
         </div>
@@ -153,6 +177,7 @@
           <h4>Get involved</h4>
           <ul>
             <li><a href="network.html">For groups</a></li>
+            <li><a href="directories.html">Directories</a></li>
             <li><a href="events.html">Sessions</a></li>
             <li><a href="partners.html">Partners</a></li>
             <li><a href="join.html">Join</a></li>
