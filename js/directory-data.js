@@ -30,6 +30,16 @@ window.LITC_GROUPS = [
 
 window.LITC_FEED = [
   {
+    title: "November Social",
+    by: "Latinos in Tech Collective",
+    kind: "Event",
+    date: "2026-11-12",
+    detail: "6 to 8 pm EST",
+    description: "In Cambridge, MA. Come meet the people building the network. Registration is through Luma and is subject to host approval.",
+    tags: ["Networking", "Community"],
+    link: "https://luma.com/i6j2cwar"
+  },
+  {
     title: "From Earning to Owning",
     by: "Latinos in Tech Collective",
     kind: "Event",                   // Event, Resource, Funding
@@ -77,7 +87,7 @@ window.LITC_FEED = [
     by: "Latinos in Tech Collective",
     kind: "Event",
     date: "2026-05-29",
-    detail: "Kendall Square",
+    detail: "Liberty Bar",
     description: "More than 100 Latino professionals, founders, and builders in one room.",
     tags: ["Networking", "Tech", "Founders"],
     link: ""
