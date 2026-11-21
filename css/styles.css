@@ -132,6 +132,9 @@ section + section, .page-head + section { border-top: 1.5px solid var(--ink); }
 .col { padding: 26px 24px 26px 0; }
 .col + .col { padding-left: 24px; border-left: 1px solid var(--rule); }
 .col p { color: var(--grey); font-size: 1rem; }
+.social-btn { position: relative; display: inline-block; width: 18px; height: 18px; margin-left: 10px; overflow: hidden; border-radius: 3px; background: #000; vertical-align: middle; }
+.social-btn img { position: absolute; top: -7.9px; left: -7.9px; width: 34.2px; max-width: none; height: auto; }
+.social-btn:hover { opacity: .8; }
 @media (max-width: 960px) {
   .cols, .cols.three { grid-template-columns: 1fr 1fr; }
   .col:nth-child(odd) { padding-left: 0; border-left: 0; }
