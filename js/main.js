@@ -46,6 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: { Accept: 'application/json' },
         });
         if (!res.ok) throw new Error(String(res.status));
+        // Endpoints answer with JSON like {"ok":true}. Apps Script reports its own errors this way
+        // with a 200 status, so treat an explicit ok:false as a failure instead of showing "Thanks".
+        const data = await res.json().catch(() => null);
+        if (data && data.ok === false) throw new Error(data.error || 'rejected');
         form.hidden = true;
         show('Thanks, we got it.', form.dataset.thanks || 'We will be in touch soon.');
       } catch (err) {
