@@ -21,6 +21,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // Forms
   // Each form posts to the URL in its action attribute (for example a Formspree endpoint).
   // If action is empty, the form is not connected yet and says so, so nothing is silently lost.
+  // Web address fields (data-normalize-url): people can type "example.org/page" without the scheme.
+  // We add https:// when they leave the field and again on submit, and flag anything that is not
+  // a plausible web address. Keep this rule in step with the check in the Apps Script.
+  const WEB_ADDRESS = /^https?:\/\/[\w\u00a1-\uffff-]+(\.[\w\u00a1-\uffff-]+)+(:\d+)?([\/?#]\S*)?$/i;
+  const normalizeUrl = (value) => {
+    const v = value.trim();
+    if (!v || /^[a-z][a-z0-9+.-]*:\/\//i.test(v)) return v;
+    return 'https://' + v.replace(/^\/\/+/, '');
+  };
+  const checkUrl = (input, rewrite) => {
+    const v = normalizeUrl(input.value);
+    const ok = !v || WEB_ADDRESS.test(v);
+    input.setCustomValidity(ok ? '' : 'Enter a web address, like example.org/your-event');
+    if (rewrite && ok && v !== input.value) input.value = v;
+  };
+  document.querySelectorAll('input[data-normalize-url]').forEach((input) => {
+    input.addEventListener('input', () => checkUrl(input, false));
+    input.addEventListener('blur', () => checkUrl(input, true));
+  });
+
   document.querySelectorAll('form[data-form]').forEach((form) => {
     const msg = form.parentElement.querySelector('[data-form-msg]');
     const show = (title, body) => {
@@ -33,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      form.querySelectorAll('input[data-normalize-url]').forEach((input) => checkUrl(input, true));
       const endpoint = form.getAttribute('action');
       if (!endpoint) {
         show('This form is not connected yet.',
